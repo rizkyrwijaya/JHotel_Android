@@ -1,20 +1,20 @@
 package projectoop.jhotel_android_rizkyramadianwijaya;
 
-import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.Button;
-import android.widget.TextView;
+        import android.content.Intent;
+        import android.support.v7.app.AlertDialog;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.EditText;
+        import android.widget.Button;
+        import android.widget.TextView;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
+        import com.android.volley.RequestQueue;
+        import com.android.volley.Response;
+        import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
     @Override
@@ -42,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setMessage("Login Success")
                                         .create()
                                         .show();
+                                Intent mainInt = new Intent(LoginActivity.this,MainActivity.class);
+                                LoginActivity.this.startActivity(mainInt);
                             }
                         } catch(JSONException e){
                             AlertDialog.Builder builder=new AlertDialog.Builder(LoginActivity.this);
