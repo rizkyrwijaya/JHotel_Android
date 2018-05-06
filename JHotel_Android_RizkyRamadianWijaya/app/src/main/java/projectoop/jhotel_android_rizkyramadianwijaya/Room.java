@@ -45,4 +45,12 @@ public class Room {
     public void setTipeKamar(String tipeKamar) {
         this.tipeKamar = tipeKamar;
     }
+
+    public String toString()
+    {
+        return "\nNomor kamar: " + this.getRoomNumber() +
+                "\nTipe kamar: " + this.getTipeKamar() +
+                "\nHarga: " + getDailyTariff() +
+                "\nStatus kamar: " + getStatusKamar();
+    }
 }

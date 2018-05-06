@@ -42,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setMessage("Login Success")
                                         .create()
                                         .show();
-                                Intent mainInt = new Intent(LoginActivity.this,MainActivity.class);
+                                Intent mainInt = new Intent(LoginActivity.this,MenuActivity.class);
+                                mainInt.putExtra("custID",jsonResponse.getInt("id"));
                                 LoginActivity.this.startActivity(mainInt);
                             }
                         } catch(JSONException e){

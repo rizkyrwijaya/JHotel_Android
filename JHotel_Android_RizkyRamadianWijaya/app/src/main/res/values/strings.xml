@@ -5,4 +5,8 @@
     <string name="button_Login">Login</string>
     <string name="button_Register">Register</string>
     <string name="fullname_String">Full Name</string>
+    <string name="static_RoomNumber">Room Number:</string>
+    <string name="static_Tariff">Tariff:</string>
+    <string name="static_Durasi">Durasi:</string>
+    <string name="static_Total">Total:</string>
 </resources>
