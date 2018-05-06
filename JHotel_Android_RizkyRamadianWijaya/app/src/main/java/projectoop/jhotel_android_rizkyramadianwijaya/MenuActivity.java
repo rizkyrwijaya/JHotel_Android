@@ -59,7 +59,9 @@ public class MenuActivity extends AppCompatActivity {
         pesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent mainInt = new Intent(MenuActivity.this,SelesaiPesananActivity.class);
+                mainInt.putExtra("custID",currentUserID);
+                MenuActivity.this.startActivity(mainInt);
             }
         });
     }
