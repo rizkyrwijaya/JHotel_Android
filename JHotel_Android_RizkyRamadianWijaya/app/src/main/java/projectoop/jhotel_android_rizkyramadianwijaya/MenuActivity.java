@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 
@@ -40,6 +41,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         currentUserID = intent.getIntExtra("custID",0);
+        final Button pesButton = (Button) findViewById(R.id.pesananButton);
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
         refreshList();
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
@@ -52,6 +54,12 @@ public class MenuActivity extends AppCompatActivity {
                 menuInt.putExtra("hotelID",listHotel.get(groupPosition).getId());
                 MenuActivity.this.startActivity(menuInt);
                 return false;
+            }
+        });
+        pesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
     }
