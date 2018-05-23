@@ -11,7 +11,7 @@ public class PesananFetchRequest extends StringRequest {
     private Map<String, String> params;
 
     public PesananFetchRequest(int custID,Response.Listener<String> listener){
-        super(Method.GET,fetch_URL + custID,listener,null);
+        super(Method.GET,fetch_URL + String.valueOf(custID),listener,null);
         params = new HashMap<>();
     }
 

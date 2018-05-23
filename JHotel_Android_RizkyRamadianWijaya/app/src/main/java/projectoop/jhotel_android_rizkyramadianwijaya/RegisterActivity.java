@@ -1,5 +1,6 @@
 package projectoop.jhotel_android_rizkyramadianwijaya;
 
+import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,11 +42,35 @@ public class RegisterActivity extends AppCompatActivity {
                             if(jsonResponse!=null){
                                 AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
                                 builder.setMessage("Registration Success")
+                                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                            @Override
+                                            public void onCancel(DialogInterface dialog) {
+                                                finish();
+                                            }
+                                        })
+                                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                finish();
+                                            }
+                                        })
                                         .create()
                                         .show();
                             }
                         } catch(JSONException e){
                             AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
+                            builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                @Override
+                                public void onCancel(DialogInterface dialog) {
+                                    finish();
+                                }
+                            });
+                            builder.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                @Override
+                                public void onDismiss(DialogInterface dialog) {
+                                    finish();
+                                }
+                            });
                             builder.setMessage("Registration Failed")
                                     .create()
                                     .show();

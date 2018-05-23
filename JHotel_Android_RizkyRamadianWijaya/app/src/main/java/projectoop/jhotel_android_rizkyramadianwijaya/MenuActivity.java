@@ -27,6 +27,8 @@ public class MenuActivity extends AppCompatActivity {
     private ArrayList<Room> listRoom = new ArrayList<>();
     private HashMap<Hotel, ArrayList<Room>> childMapping = new HashMap<>();
 
+    private Button pesButton;
+
     HashMap<String, Hotel> hotelHashMap = new HashMap<>();
     HashMap<String, ArrayList<Room>> roomsMap = new HashMap<>();
 
@@ -41,9 +43,9 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Intent intent = getIntent();
         currentUserID = intent.getIntExtra("custID",0);
-        final Button pesButton = (Button) findViewById(R.id.pesananButton);
+        pesButton = (Button) findViewById(R.id.pesananButton);
+
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
-        refreshList();
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
@@ -66,7 +68,18 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        refreshList();
+    }
+
     public void refreshList(){
+        hotelHashMap.clear();
+        roomsMap.clear();
+        listHotel = new ArrayList<>();
+        listRoom = new ArrayList<>();
+        childMapping = new HashMap<>();
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -83,22 +96,13 @@ public class MenuActivity extends AppCompatActivity {
                         hotelHashMap.put(h.getNama(), h);
                         Room room = new Room(room_temp.getString("nomorKamar"), room_temp.getString("statusKamar"),
                                 room_temp.getDouble("dailyTariff"), room_temp.getString("tipeKamar"));
-                        if(!roomsMap.containsKey(h.getNama())) {
-                            //ArrayList<Room> listRoom = new ArrayList<>();
-                            listRoom.add(room);
-                            roomsMap.put(h.getNama(), listRoom);
-                        } else {
-                            //ArrayList<Room> listRoom = roomsMap.get(h.getNama());
-                            listRoom.add(room);
-                            roomsMap.put(h.getNama(), listRoom);
-                        }
+                        listRoom.add(room);
+                        roomsMap.put(h.getNama(), listRoom);
                     }
-
                     for(String key : hotelHashMap.keySet()) {
                         listHotel.add(hotelHashMap.get(key));
                         childMapping.put(hotelHashMap.get(key), roomsMap.get(key));
                     }
-
                     listAdapter = new MenuListAdapter(MenuActivity.this, listHotel, childMapping);
                     expListView.setAdapter(listAdapter);
                 } catch (JSONException e) {

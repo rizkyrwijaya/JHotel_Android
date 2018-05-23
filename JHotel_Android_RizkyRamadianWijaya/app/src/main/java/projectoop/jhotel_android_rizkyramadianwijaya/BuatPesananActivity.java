@@ -1,5 +1,6 @@
 package projectoop.jhotel_android_rizkyramadianwijaya;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -63,12 +64,36 @@ public class BuatPesananActivity extends AppCompatActivity {
                             if(jsonResponse!=null){
                                 AlertDialog.Builder builder=new AlertDialog.Builder(BuatPesananActivity.this);
                                 builder.setMessage("Pesanan Sukses!")
+                                        .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                            @Override
+                                            public void onCancel(DialogInterface dialog) {
+                                                finish();
+                                            }
+                                        })
+                                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                            @Override
+                                            public void onDismiss(DialogInterface dialog) {
+                                                finish();
+                                            }
+                                        })
                                         .create()
                                         .show();
                             }
                         } catch(JSONException e){
                             AlertDialog.Builder builder=new AlertDialog.Builder(BuatPesananActivity.this);
                             builder.setMessage("Pesanan Gagal!")
+                                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                        @Override
+                                        public void onCancel(DialogInterface dialog) {
+                                            finish();
+                                        }
+                                    })
+                                    .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss(DialogInterface dialog) {
+                                            finish();
+                                        }
+                                    })
                                     .create()
                                     .show();
                         }
